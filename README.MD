@@ -2,19 +2,19 @@
 
 
 
-![Phoca Cart Zoom Image Plugin](https://github.com/PhocaCz/PhocaCartImageZoomPlugin/blob/master/image_zoom.png)
+![Phoca Cart Image Zoom Plugin](https://github.com/PhocaCz/PhocaCartImageZoomPlugin/blob/master/image_zoom.png)
 
-# Phoca Cart Zoom Image Plugin
+# Phoca Cart Image Zoom Plugin
 
 
 
-Phoca Cart View - Zoom Image Plugin - this plugin adds the 'zoom on hover/click' functionality to product image in Phoca Cart product view.
+Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click' functionality to product image in Phoca Cart product view.
 
 
 
 ## Project page
 
-[Phoca Cart Zoom Image Plugin](https://www.phoca.cz/phocacart-extensions/2-plugins/46-view-zoom-image-plugin)
+[Phoca Cart Image Zoom Plugin](https://www.phoca.cz/phocacart-extensions/2-plugins/46-view-zoom-image-plugin)
 
 [Phoca Cart Info Page](https://www.phoca.cz/project/phocacart-joomla-ecommerce)
 

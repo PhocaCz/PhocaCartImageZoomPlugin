@@ -57,6 +57,14 @@
 	border: 2px solid #dc3545 !important;
 }
 
+.drift-zoom-pane {
+
+	/* zoom area can be changed here
+	border: 2px solid #ededed;
+	max-height: 300px;
+	*/
+}
+
 
 
 
