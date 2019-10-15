@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="pcv" method="upgrade" version="3">
+	<name>plg_pcv_image_zoom</name>
+	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>15/10/2019</creationDate>
+	<authorEmail></authorEmail>
+	<authorUrl>https://www.phoca.cz</authorUrl>
+	<copyright>Jan Pavelka</copyright>
+	<license>GNU/GPL</license>
+	<version>3.4.0</version>
+	<description>PLG_PCV_IMAGE_ZOOM_DESCRIPTION</description>
+	<projectName>PhocaCartImageZoomPlugin</projectName>
+
+	<media destination="plg_pcv_image_zoom" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+
+	<files>
+		<folder>helpers</folder>
+		<filename plugin="image_zoom">image_zoom.php</filename>
+		<filename plugin="image_zoom">index.html</filename>
+		<filename plugin="image_zoom">manifest.xml</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_pcv_image_zoom.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_pcv_image_zoom.sys.ini</language>
+	</languages>
+
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_pcv_image_zoom.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_pcv_image_zoom.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="zoom_image" type="list" default="l" label="PLG_PCV_IMAGE_ZOOM_ZOOM_IMAGE_LABEL" description="PLG_PCV_IMAGE_ZOOM_ZOOM_IMAGE_DESC">
+                	<option value="l">PLG_PCV_IMAGE_ZOOM_LARGE_THUMBNAIL</option>
+                	<option value="o">PLG_PCV_IMAGE_ZOOM_ORIGINAL_IMAGE</option>
+            	</field>
+
+			</fieldset>
+		</fields>
+</config>
+
+	<updateservers>
+		<server type="extension" name="PLG_PCV_IMAGE_ZOOM" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartImageZoomPlugin/master/manifest.xml]]></server>
+	</updateservers>
+</extension>

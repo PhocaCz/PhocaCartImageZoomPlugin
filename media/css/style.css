@@ -1,0 +1,83 @@
+.phImageFullHref {
+  display: inline-block;
+  /*width: 40%;
+  float: left;*/
+  cursor:zoom-in
+}
+
+.phImageFullHref img {
+ /* max-width: 100%;*/
+}
+
+.phItemPricePanel {
+  position: relative;
+  /*width: 50%;
+  margin-left: 5%;
+  float: left;*/
+  min-height:300px;
+}
+
+@media (max-width: 767px) {
+  
+  .phItemPricePanel, .phImageFullHref {
+    float: none;
+  }
+
+  .phImageFullHref {
+    display:block;
+   /* width:100%;
+    max-width:300px;*/
+    text-align:center;
+    margin: 0 auto;
+    cursor: zoom-in;
+  }
+
+  .phItemPricePanel {
+  }
+
+  .responsive-hint {
+    display: none;
+  }
+  
+   /*.drift-zoom-pane.drift-open, .drift-zoom-pane {
+    display: none;
+  }*/
+}
+.drift-zoom-pane.drift-opening,
+.drift-zoom-pane.drift-open,
+.drift-zoom-pane.drift-closing,
+.lum-lightbox.lum-open {
+	z-index: 3;
+}
+
+.phImageAdditional {
+	border: 2px solid transparent;
+}
+.phImageAdditional.active {
+	border: 2px solid #dc3545 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
