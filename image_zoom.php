@@ -26,6 +26,9 @@ class plgPCVImage_Zoom extends JPlugin
 	public function PCVonItemImage($context, $item, $t, $params) {
 
 
+		$zoom_image 		= $this->params->get('zoom_image', 'l');
+		$display_navigation = $this->params->get('display_navigation', 0);
+
 	    $layoutI	= new JLayoutFile('image', null, array('component' => 'com_phocacart'));
 
 	    $document   = JFactory::getDocument();
@@ -35,9 +38,12 @@ class plgPCVImage_Zoom extends JPlugin
 	    JHtml::stylesheet('media/plg_pcv_image_zoom/css/style.css');
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/drift/Drift.min.js');
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/luminuous/Luminous.min.js');
+
+	    $app = JFactory::getApplication();
+		$app->getDocument()->addScriptOptions('phParamsPlgImageZoom', array('displayNavigation' => $display_navigation ));
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/main.js');
 
-	    $zoom_image = $this->params->get('zoom_image', 'l');
+
 
 	    $s      = PhocacartRenderStyle::getStyles();
         $o      = array();
@@ -84,7 +90,7 @@ class plgPCVImage_Zoom extends JPlugin
 			}
 			$o[] = '</div>';
 
-			$o[] = '<a href="' . ($linkO != '' ? $linkO : $link) . '" class="' . $t['image_class'] . ' phjProductHref' . $idName . ' phImageFullHref" data-href="' . $link . '">';
+			$o[] = '<a href="' . ($linkO != '' ? $linkO : $link) . '" class="' . $t['image_class'] . ' phjProductHref' . $idName . ' phImageFullHref phImageGalleryHref" data-href="' . $link . '">';
 
 			$d = array();
 			$d['t'] = $t;
@@ -96,7 +102,7 @@ class plgPCVImage_Zoom extends JPlugin
 			$d['alt-value'] = PhocaCartImage::getAltTitle($x->title, $image->rel);
 			$d['data-image-large'] = $link;
 			$d['data-image-original'] = $linkO;
-			$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageFull', 'phjProductImage' . $idName));
+			$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageFull', 'phImageGallery', 'phjProductImage' . $idName));
 			$d['style'] = '';
 			if (isset($t['image_width']) && (int)$t['image_width'] > 0 && isset($t['image_height']) && (int)$t['image_height'] > 0) {
 				$d['style'] = 'width:' . $t['image_width'] . 'px;height:' . $t['image_height'] . 'px';
@@ -126,8 +132,14 @@ class plgPCVImage_Zoom extends JPlugin
 			foreach ($t['add_images'] as $v2) {
 
 				$active = '';
+				$phImageGallery 	= 'phImageGallery';
+				$phImageGalleryHref	= 'phImageGalleryHref';
 				if (isset($v2->active) && $v2->active) {
 					$active = 'active';
+					// Don't double the image in navigation slideshow (active phImageGalleryHref is the same like phImageFullHref
+					// Without this condition, one image will be displayed twice in slideshow (with navigation arrows) - first as full image, second as first small active image
+					$phImageGallery = '';
+					$phImageGalleryHref	= '';
 				}
 
 				$o[] = '<div class="' . $s['c']['col.xs12.sm4.md4'] . ' ph-item-image-box">';
@@ -147,7 +159,7 @@ class plgPCVImage_Zoom extends JPlugin
 
 				$altValue = PhocaCartImage::getAltTitle($x->title, $v2->image);
 
-				$o[] = '<a href="' . ($linkO != '' ? $linkO : $link) . '" class="' . $t['image_class'] . ' phImageAdditionalHref">';
+				$o[] = '<a href="' . ($linkO != '' ? $linkO : $link) . '" class="' . $t['image_class'] . ' phImageAdditionalHref '.$phImageGalleryHref.'">';
 
 				$d = array();
 				$d['t'] = $t;
@@ -157,7 +169,7 @@ class plgPCVImage_Zoom extends JPlugin
 				$d['alt-value'] = PhocaCartImage::getAltTitle($x->title, $v2->image);
 				$d['data-image-large'] = $link;
 				$d['data-image-original'] = $linkO;
-				$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageAdditional', $active /*, 'phjProductImage'.$idName*/));
+				$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageAdditional', $phImageGallery, $active /*, 'phjProductImage'.$idName*/));
 				$o[] = $layoutI->render($d);
 
 				$o[] = '</a>';

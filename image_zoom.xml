@@ -2,7 +2,7 @@
 <extension type="plugin" group="pcv" method="upgrade" version="3">
 	<name>plg_pcv_image_zoom</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>15/10/2019</creationDate>
+	<creationDate>24/10/2019</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
@@ -43,6 +43,11 @@
 				<field name="zoom_image" type="list" default="l" label="PLG_PCV_IMAGE_ZOOM_ZOOM_IMAGE_LABEL" description="PLG_PCV_IMAGE_ZOOM_ZOOM_IMAGE_DESC">
                 	<option value="l">PLG_PCV_IMAGE_ZOOM_LARGE_THUMBNAIL</option>
                 	<option value="o">PLG_PCV_IMAGE_ZOOM_ORIGINAL_IMAGE</option>
+            	</field>
+
+				<field name="display_navigation" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_PCV_IMAGE_ZOOM_DISPLAY_NAVIGATION_LABEL" description="PLG_PCV_IMAGE_ZOOM_DISPLAY_NAVIGATION_DESC">
+                	<option value="1">PLG_PCV_IMAGE_ZOOM_YES</option>
+                	<option value="0">PLG_PCV_IMAGE_ZOOM_NO</option>
             	</field>
 
 			</fieldset>
