@@ -26,6 +26,8 @@ Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click'
 
 
 
+
+
 ## Support
 
 [Phoca Forum](https://www.phoca.cz/forum)
@@ -52,7 +54,7 @@ Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click'
 
 ## Version
 
-3.4.0
+3.5.3
 
 
 
