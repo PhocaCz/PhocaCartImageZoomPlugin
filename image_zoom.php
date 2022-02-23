@@ -7,6 +7,10 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\FileLayout;
+
 defined('_JEXEC') or die;
 jimport( 'joomla.plugin.plugin' );
 jimport( 'joomla.filesystem.file');
@@ -23,23 +27,23 @@ class plgPCVImage_Zoom extends JPlugin
 	}
 
 
-	public function PCVonItemImage($context, $item, $t, $params) {
+	public function onPCVonItemImage($context, $item, $t, $params) {
 
 
 		$zoom_image 		= $this->params->get('zoom_image', 'l');
 		$display_navigation = $this->params->get('display_navigation', 0);
 
-	    $layoutI	= new JLayoutFile('image', null, array('component' => 'com_phocacart'));
+	    $layoutI	= new FileLayout('image', null, array('component' => 'com_phocacart'));
 
-	    $document   = JFactory::getDocument();
-	    JHtml::stylesheet('media/plg_pcv_image_zoom/js/drift/drift-basic.min.css');
-	    JHtml::stylesheet('media/plg_pcv_image_zoom/js/luminuous/luminous-basic.min.css');
+	    $document   = Factory::getDocument();
+	    HTMLHelper::stylesheet('media/plg_pcv_image_zoom/js/drift/drift-basic.min.css');
+	    HTMLHelper::stylesheet('media/plg_pcv_image_zoom/js/luminuous/luminous-basic.min.css');
 
-	    JHtml::stylesheet('media/plg_pcv_image_zoom/css/style.css');
+	    HTMLHelper::stylesheet('media/plg_pcv_image_zoom/css/style.css');
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/drift/Drift.min.js');
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/luminuous/Luminous.min.js');
 
-	    $app = JFactory::getApplication();
+	    $app = Factory::getApplication();
 		$app->getDocument()->addScriptOptions('phParamsPlgImageZoom', array('displayNavigation' => $display_navigation ));
 	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/main.js');
 

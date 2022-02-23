@@ -16,7 +16,27 @@
 		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="3.9"/>
+		<targetplatform name="joomla" version="3.([89]|10)"/>
+		<client>site</client>
+	</update>
+	<update>
+		<name><![CDATA[ Phoca Cart Image Zoom Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click' functionality to product image in Phoca Cart product view. ]]></description>
+		<element>image_zoom</element>
+		<folder>pcv</folder>
+		<type>plugin</type>
+		<version>4.0.0</version>
+		<infourl title="Phoca Cart Image Zoom Plugin 4.0.0">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/4.0.0/plg_pcv_image_zoom_v4.0.0.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="4.[0]"/>
 		<client>site</client>
 	</update>
 </updates>

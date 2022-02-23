@@ -2,7 +2,7 @@
 
 
 
-![Phoca Cart Image Zoom Plugin](https://github.com/PhocaCz/PhocaCartImageZoomPlugin/blob/master/image_zoom.png)
+![Phoca Cart Image Zoom Plugin](https://github.com/PhocaCz/PhocaCartImageZoomPlugin/blob/master/image_zoom.png?raw=true)
 
 # Phoca Cart Image Zoom Plugin
 
@@ -52,9 +52,13 @@ Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click'
 
 
 
-## Version
+## Version (Joomla! 3.x)
 
 3.5.4
+
+## Version (Joomla! 4.x)
+
+4.0.0
 
 
 
