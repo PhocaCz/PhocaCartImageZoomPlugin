@@ -10,6 +10,8 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 jimport( 'joomla.plugin.plugin' );
@@ -17,9 +19,16 @@ jimport( 'joomla.filesystem.file');
 jimport( 'joomla.html.parameter' );
 
 
-JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
 
-class plgPCVImage_Zoom extends JPlugin
+if (file_exists(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php')) {
+	// Joomla 5 and newer
+	require_once(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php');
+} else {
+	// Joomla 4
+	JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+}
+
+class plgPCVImage_Zoom extends CMSPlugin
 {
 	function __construct(& $subject, $config) {
 		parent :: __construct($subject, $config);
@@ -32,6 +41,7 @@ class plgPCVImage_Zoom extends JPlugin
 
 		$zoom_image 		= $this->params->get('zoom_image', 'l');
 		$display_navigation = $this->params->get('display_navigation', 0);
+		$main_image_thumbnail = $this->params->get('main_image_thumbnail', 1);
 
 	    $layoutI	= new FileLayout('image', null, array('component' => 'com_phocacart'));
 
@@ -40,12 +50,12 @@ class plgPCVImage_Zoom extends JPlugin
 	    HTMLHelper::stylesheet('media/plg_pcv_image_zoom/js/luminuous/luminous-basic.min.css');
 
 	    HTMLHelper::stylesheet('media/plg_pcv_image_zoom/css/style.css');
-	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/drift/Drift.min.js');
-	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/luminuous/Luminous.min.js');
+	    $document->addScript(Uri::root(true) . '/media/plg_pcv_image_zoom/js/drift/Drift.min.js');
+	    $document->addScript(Uri::root(true) . '/media/plg_pcv_image_zoom/js/luminuous/Luminous.min.js');
 
 	    $app = Factory::getApplication();
 		$app->getDocument()->addScriptOptions('phParamsPlgImageZoom', array('displayNavigation' => $display_navigation ));
-	    $document->addScript(JURI::root(true) . '/media/plg_pcv_image_zoom/js/main.js');
+	    $document->addScript(Uri::root(true) . '/media/plg_pcv_image_zoom/js/main.js');
 
 
 
@@ -68,15 +78,15 @@ class plgPCVImage_Zoom extends JPlugin
 			$imageL = PhocacartImage::getThumbnailName($t['pathitem'], $imageA, 'large');
 		}
 
-		$link = JURI::base(true) . '/' . $imageL->rel;// Thumbnail - Large Thumbnail as default
+		$link = Uri::base(true) . '/' . $imageL->rel;// Thumbnail - Large Thumbnail as default
 
 		if ($t['display_webp_images'] == 1) {
-			$link = JURI::base(true) . '/' . $imageL->rel_webp;
+			$link = Uri::base(true) . '/' . $imageL->rel_webp;
 		}
 
 		$linkO = '';
 		if ($zoom_image == 'o') {
-		    $linkO = JURI::base(true) . '/' . $t['pathitem']['orig_rel_ds'] . $x->image;// Original image
+		    $linkO = Uri::base(true) . '/' . $t['pathitem']['orig_rel_ds'] . $x->image;// Original image
         }
 
 
@@ -99,14 +109,15 @@ class plgPCVImage_Zoom extends JPlugin
 			$d = array();
 			$d['t'] = $t;
 			$d['s'] = $s;
-			$d['src'] = JURI::base(true) . '/' . $image->rel;
-			$d['srcset-webp'] = JURI::base(true) . '/' . $image->rel_webp;
-			$d['data-image'] = JURI::base(true) . '/' . $image->rel;
-			$d['data-image-webp'] = JURI::base(true) . '/' . $image->rel_webp;
+			$d['src'] = Uri::base(true) . '/' . $image->rel;
+			$d['srcset-webp'] = Uri::base(true) . '/' . $image->rel_webp;
+			$d['data-image'] = Uri::base(true) . '/' . $image->rel;
+			$d['data-image-webp'] = Uri::base(true) . '/' . $image->rel_webp;
 			$d['alt-value'] = PhocaCartImage::getAltTitle($x->title, $image->rel);
 			$d['data-image-large'] = $link;
 			$d['data-image-original'] = $linkO;
-			$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageFull', 'phImageGallery', 'phjProductImage' . $idName));
+			// phImageFull can be e.g. in related images, so we switched to phImageFullDetail
+			$d['class'] = PhocacartRenderFront::completeClass(array($s['c']['img-responsive'], $label['cssthumbnail2'], 'ph-image-full', 'phImageFull', 'phImageFullDetail', 'phImageGallery', 'phjProductImage' . $idName));
 			$d['style'] = '';
 			if (isset($t['image_width']) && (int)$t['image_width'] > 0 && isset($t['image_height']) && (int)$t['image_height'] > 0) {
 				$d['style'] = 'width:' . $t['image_width'] . 'px;height:' . $t['image_height'] . 'px';
@@ -125,7 +136,12 @@ class plgPCVImage_Zoom extends JPlugin
 		$mainImage[0]->image = $x->image;
 		$mainImage[0]->active = true;
 
-        $t['add_images'] = array_merge($mainImage, $t['add_images']);
+		if ($main_image_thumbnail == 0 && empty($t['add_images'])){
+			// Don't add main image thumbnail to group of additional thumbnail when no additional image exist
+		} else {
+			$t['add_images'] = array_merge($mainImage, $t['add_images']);
+		}
+
 
 
 		// ADDITIONAL IMAGES
@@ -150,15 +166,15 @@ class plgPCVImage_Zoom extends JPlugin
 				$image = PhocacartImage::getThumbnailName($t['pathitem'], $v2->image, 'small');
 				$imageL = PhocacartImage::getThumbnailName($t['pathitem'], $v2->image, 'large');
 
-				$link = JURI::base(true) . '/' . $imageL->rel;// Thumbnail - Large Thumbnail as default
+				$link = Uri::base(true) . '/' . $imageL->rel;// Thumbnail - Large Thumbnail as default
 
 				if ($t['display_webp_images'] == 1) {
-					$link = JURI::base(true) . '/' . $imageL->rel_webp;
+					$link = Uri::base(true) . '/' . $imageL->rel_webp;
 				}
 
 				$linkO = '';
 				if ($zoom_image == 'o') {
-					$linkO = JURI::base(true) . '/' . $t['pathitem']['orig_rel_ds'] . $v2->image;// Original image
+					$linkO = Uri::base(true) . '/' . $t['pathitem']['orig_rel_ds'] . $v2->image;// Original image
 				}
 
 				$altValue = PhocaCartImage::getAltTitle($x->title, $v2->image);
@@ -168,8 +184,8 @@ class plgPCVImage_Zoom extends JPlugin
 				$d = array();
 				$d['t'] = $t;
 				$d['s'] = $s;
-				$d['src'] = JURI::base(true) . '/' . $image->rel;
-				$d['srcset-webp'] = JURI::base(true) . '/' . $image->rel_webp;
+				$d['src'] = Uri::base(true) . '/' . $image->rel;
+				$d['srcset-webp'] = Uri::base(true) . '/' . $image->rel_webp;
 				$d['alt-value'] = PhocaCartImage::getAltTitle($x->title, $v2->image);
 				$d['data-image-large'] = $link;
 				$d['data-image-original'] = $linkO;

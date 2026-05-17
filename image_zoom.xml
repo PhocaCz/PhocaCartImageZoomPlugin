@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" group="pcv" method="upgrade" version="4.0">
+<extension type="plugin" group="pcv" method="upgrade" version="6.0">
 	<name>plg_pcv_image_zoom</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>23/02/2022</creationDate>
+	<creationDate>16/05/2026</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>4.0.0</version>
+	<version>6.1.0</version>
 	<description>PLG_PCV_IMAGE_ZOOM_DESCRIPTION</description>
 	<projectName>PhocaCartImageZoomPlugin</projectName>
 
@@ -46,6 +46,11 @@
             	</field>
 
 				<field name="display_navigation" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_PCV_IMAGE_ZOOM_DISPLAY_NAVIGATION_LABEL" description="PLG_PCV_IMAGE_ZOOM_DISPLAY_NAVIGATION_DESC">
+                	<option value="1">PLG_PCV_IMAGE_ZOOM_YES</option>
+                	<option value="0">PLG_PCV_IMAGE_ZOOM_NO</option>
+            	</field>
+
+				<field name="main_image_thumbnail" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_PCV_IMAGE_ZOOM_MAIN_IMAGE_THUMBNAIL_LABEL" description="PLG_PCV_IMAGE_ZOOM_MAIN_IMAGE_THUMBNAIL_DESC">
                 	<option value="1">PLG_PCV_IMAGE_ZOOM_YES</option>
                 	<option value="0">PLG_PCV_IMAGE_ZOOM_NO</option>
             	</field>

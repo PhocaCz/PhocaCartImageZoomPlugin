@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <updates>
 	<update>
 		<name><![CDATA[ Phoca Cart Image Zoom Plugin ]]></name>
@@ -5,10 +6,10 @@
 		<element>image_zoom</element>
 		<folder>pcv</folder>
 		<type>plugin</type>
-		<version>3.5.4</version>
-		<infourl title="Phoca Cart Image Zoom Plugin 3.5.4">https://www.phoca.cz/</infourl>
+		<version>4.0.5</version>
+		<infourl title="Phoca Cart Image Zoom Plugin 4.0.5">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/3.5.4/plg_pcv_image_zoom_v3.5.4.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/4.0.5/plg_pcv_image_zoom_v4.0.5.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
@@ -16,7 +17,7 @@
 		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="3.([89]|10)"/>
+		<targetplatform name="joomla" version="4\.*"/>
 		<client>site</client>
 	</update>
 	<update>
@@ -25,18 +26,40 @@
 		<element>image_zoom</element>
 		<folder>pcv</folder>
 		<type>plugin</type>
-		<version>4.0.0</version>
-		<infourl title="Phoca Cart Image Zoom Plugin 4.0.0">https://www.phoca.cz/</infourl>
+		<version>5.0.0</version>
+		<infourl title="Phoca Cart Image Zoom Plugin 5.0.0">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/4.0.0/plg_pcv_image_zoom_v4.0.0.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/5.0.0/plg_pcv_image_zoom_v5.0.0.zip</downloadurl>
 		</downloads>
+		<sha512>ffd4e64df4c98c9d0bd16ec3c92a9cf434d353667cde7b545e3c0a05103839ad3f95c696d4e5b242edeae18924b09616c6b067195b651acdb40a9ac042f33ea9</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
 		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="4.[0]"/>
+		<targetplatform name="joomla" version="5\.*"/>
+		<client>site</client>
+	</update>
+	<update>
+		<name><![CDATA[ Phoca Cart Image Zoom Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart View - Image Zoom Plugin - this plugin adds the 'zoom on hover/click' functionality to product image in Phoca Cart product view. ]]></description>
+		<element>image_zoom</element>
+		<folder>pcv</folder>
+		<type>plugin</type>
+		<version>6.1.0</version>
+		<infourl title="Phoca Cart Image Zoom Plugin 6.1.0">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartImageZoomPlugin/releases/download/6.1.0/plg_pcv_image_zoom_v6.1.0.zip</downloadurl>
+		</downloads>
+		<sha512>6dc8ecaf43fae6782f8575207241e945980feaac528094f494a5dc004fa11df37b60f760ef2b89316a549d0499f2c60c4da71ebbbbfb4f5335abb405a512f9f7</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="(5|6)\.*"/>
 		<client>site</client>
 	</update>
 </updates>

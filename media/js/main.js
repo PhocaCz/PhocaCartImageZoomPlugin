@@ -70,7 +70,7 @@ jQuery(document).ready(function(){
             gallery = new LuminousGallery(phImageZoomTriggerGallery, {}, {showCloseButton: true});
         }
 
-        jQuery(".phImageFull").attr("src", srcL);
+        jQuery(".phImageFullDetail").attr("src", srcL);
         jQuery(".phImageFullHref").attr("href", srcO);
 
         // There are two events: 1) switch image 2) modal popup - stop the second event on small images
